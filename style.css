@@ -1,0 +1,386 @@
+:root {
+    --bg-color: #050505;
+    --text-color: #ffffff;
+    --neon-blue: #00f2ff;
+    --neon-purple: #8f00ff;
+    --glass-bg: rgba(255, 255, 255, 0.03);
+    --glass-border: rgba(255, 255, 255, 0.05);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Outfit', sans-serif;
+    cursor: none; /* Hide default cursor */
+}
+
+body {
+    background: var(--bg-color);
+    color: var(--text-color);
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Space Grotesk', sans-serif;
+}
+
+/* Custom Cursor */
+.cursor {
+    width: 8px;
+    height: 8px;
+    background: var(--neon-blue);
+    border-radius: 50%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: transform 0.1s;
+}
+
+.cursor-follower {
+    width: 30px;
+    height: 30px;
+    border: 1px solid var(--neon-purple);
+    border-radius: 50%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 9998;
+    transform: translate(-50%, -50%);
+    transition: transform 0.15s, width 0.2s, height 0.2s, background 0.2s;
+}
+
+.cursor-follower.active {
+    width: 50px;
+    height: 50px;
+    background: rgba(143, 0, 255, 0.2);
+    border-color: transparent;
+}
+
+/* Particles */
+#particles-js {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background: radial-gradient(circle at center, #111 0%, var(--bg-color) 100%);
+}
+
+/* Header & Nav */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 50px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    backdrop-filter: blur(10px);
+    background: rgba(5, 5, 5, 0.6);
+    border-bottom: 1px solid var(--glass-border);
+    transition: 0.3s;
+}
+
+.logo {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--text-color);
+    letter-spacing: 2px;
+}
+
+.logo span {
+    color: var(--neon-blue);
+}
+
+nav a {
+    margin-left: 30px;
+    text-decoration: none;
+    color: #ccc;
+    font-weight: 500;
+    transition: 0.3s;
+    position: relative;
+}
+
+nav a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -5px;
+    left: 0;
+    background: var(--neon-blue);
+    transition: width 0.3s ease;
+}
+
+nav a:hover {
+    color: var(--text-color);
+}
+
+nav a:hover::after {
+    width: 100%;
+}
+
+/* Sections */
+section {
+    padding: 100px 50px;
+}
+
+section h2 {
+    font-size: 40px;
+    margin-bottom: 30px;
+    text-align: center;
+    background: linear-gradient(90deg, var(--neon-blue), var(--neon-purple));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+/* Hero Section */
+.hero {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 10%;
+    padding-top: 0;
+}
+
+.hero h2 {
+    font-size: 60px;
+    margin-bottom: 10px;
+    text-align: left;
+    background: none;
+    -webkit-background-clip: initial;
+    background-clip: initial;
+    color: var(--text-color);
+}
+
+.gradient {
+    background: linear-gradient(90deg, var(--neon-blue), var(--neon-purple));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    display: inline-block;
+}
+
+.typing {
+    font-size: 32px;
+    color: #ccc;
+    font-weight: 300;
+    min-height: 40px;
+}
+
+.typing::after {
+    content: '|';
+    animation: blink 1s infinite;
+    color: var(--neon-blue);
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+.buttons {
+    margin-top: 40px;
+    display: flex;
+    gap: 20px;
+}
+
+.btn, .btn-outline {
+    padding: 12px 30px;
+    text-decoration: none;
+    border-radius: 30px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 14px;
+}
+
+.btn {
+    background: linear-gradient(45deg, var(--neon-blue), var(--neon-purple));
+    color: var(--text-color);
+    box-shadow: 0 0 15px rgba(0, 242, 255, 0.3);
+}
+
+.btn:hover {
+    box-shadow: 0 0 30px rgba(143, 0, 255, 0.6);
+    transform: translateY(-3px);
+}
+
+.btn-outline {
+    border: 2px solid var(--neon-blue);
+    color: var(--neon-blue);
+    background: transparent;
+}
+
+.btn-outline:hover {
+    background: rgba(0, 242, 255, 0.1);
+    box-shadow: 0 0 20px rgba(0, 242, 255, 0.4);
+    transform: translateY(-3px);
+}
+
+/* Glassmorphism */
+.glass {
+    margin: 0 auto 100px;
+    max-width: 1000px;
+    padding: 50px;
+    background: var(--glass-bg);
+    backdrop-filter: blur(15px);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+.glass::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent);
+    transform: skewX(-25deg);
+    transition: 0.5s;
+}
+
+.glass:hover::before {
+    left: 150%;
+}
+
+.glass p {
+    font-size: 18px;
+    line-height: 1.8;
+    color: #ccc;
+    text-align: center;
+}
+
+/* Skills */
+.skill-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 30px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.card {
+    padding: 30px 20px;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 15px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 600;
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    border-color: var(--neon-blue);
+    box-shadow: 0 10px 30px rgba(0, 242, 255, 0.2);
+    color: var(--neon-blue);
+}
+
+/* Projects */
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.project-card {
+    padding: 40px 30px;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    transition: all 0.3s ease;
+    transform-style: preserve-3d;
+}
+
+.project-card h3 {
+    font-size: 24px;
+    margin-bottom: 15px;
+    color: var(--neon-blue);
+    transform: translateZ(30px);
+}
+
+.project-card p {
+    color: #ccc;
+    line-height: 1.6;
+    transform: translateZ(20px);
+}
+
+/* Contact */
+form {
+    display: flex;
+    flex-direction: column;
+    max-width: 600px;
+    margin: 0 auto;
+    gap: 20px;
+}
+
+input, textarea {
+    padding: 15px 20px;
+    border-radius: 12px;
+    border: 1px solid var(--glass-border);
+    background: rgba(0,0,0,0.2);
+    color: var(--text-color);
+    font-size: 16px;
+    transition: 0.3s;
+    outline: none;
+}
+
+input:focus, textarea:focus {
+    border-color: var(--neon-purple);
+    box-shadow: 0 0 15px rgba(143, 0, 255, 0.2);
+    background: rgba(0,0,0,0.4);
+}
+
+textarea {
+    resize: vertical;
+    min-height: 150px;
+}
+
+button[type="submit"] {
+    padding: 15px;
+    background: linear-gradient(45deg, var(--neon-blue), var(--neon-purple));
+    border: none;
+    border-radius: 30px;
+    color: var(--text-color);
+    font-size: 18px;
+    font-weight: 600;
+    cursor: none; /* override default cursor pointer */
+    transition: 0.3s;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+button[type="submit"]:hover {
+    box-shadow: 0 0 30px rgba(143, 0, 255, 0.6);
+    transform: scale(1.02);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    header { padding: 20px; }
+    nav { display: none; } /* Could add a hamburger menu later */
+    .hero { padding-left: 5%; }
+    .hero h2 { font-size: 40px; }
+    .glass { margin: 20px; padding: 30px; }
+    section { padding: 60px 20px; }
+}
